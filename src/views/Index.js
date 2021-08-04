@@ -6,10 +6,11 @@ import {
   FormField,
   InputPhone,
   Button,
-  Stepper,
+  Spinner,
+  Checkbox,
 } from "vienna-ui";
 
-function Index() {
+function Index(props) {
   const closeColor = {
     position: "absolute",
     top: "9px",
@@ -38,10 +39,11 @@ function Index() {
   };
 
   const clickBtn = () => {
-    if (value.length === 0 || isComplete === false) {
+    if (value.length < 18 || isComplete === false) {
       setFocused(false);
-      console.log(isComplete);
       inputRef.current.focus();
+    } else {
+      props.updateData(value);
     }
   };
 
@@ -70,11 +72,8 @@ function Index() {
 
   return (
     <div>
-      <Stepper value="3" size="s">
-        <Stepper.Step value="1">Заголовок шага №1</Stepper.Step>
-        <Stepper.Step value="2">Заголовок шага №2</Stepper.Step>
-        <Stepper.Step value="3">Заголовок шага №3</Stepper.Step>
-      </Stepper>
+      <Spinner></Spinner>
+      <Checkbox checked />
       <Card
         title="Введите номер телефона"
         footer={
